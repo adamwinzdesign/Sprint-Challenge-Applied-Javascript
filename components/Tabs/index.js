@@ -7,3 +7,47 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
+
+// from HTML:
+// TABS COMPONENT, PLACE TABS HERE
+// <div class="tabs">
+//   <div class="topics">
+//     <span class="title">TRENDING TOPICS:</span>
+//   </div>
+// </div>
+
+axios
+  .get('https://lambda-times-backend.herokuapp.com/topics')
+  .then(response => {
+    console.log(response);
+      // const newCard = createCard(response.data);
+      // cards.appendChild(newCard);
+    })
+  .catch(error => {
+    console.log("The data was not returned", error);
+  });
+
+  // grab tabs div from existing HTML
+  const tabMain = document.querySelector('.tab');
+
+  function Tabs() {
+    // create elements
+    const tabsDiv = document.createElement('div');
+    const topicsDiv = document.createElement('div');
+    const titleSpan = document.createElement('span');
+
+    // append elements
+    tabMain.appendChild(tabsDiv);
+    tabsDiv.appendChild(topicsDiv);
+    topicsDiv.appendChild(titleSpan);
+
+    // set classes
+    tabsDiv.classList.add('tabs');
+    topicsDiv.classList.add('topics');
+    titleSpan.classList.add('title');
+
+    // set text
+    titleSpan.textContent = 'TRENDING TOPICS: ' + obj.data.topics; 
+
+    return tabsDiv
+  }
