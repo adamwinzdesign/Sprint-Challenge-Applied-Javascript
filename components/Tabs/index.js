@@ -16,21 +16,25 @@
 //   </div>
 // </div>
 
+// REVISE TO JUST APPEND TAB TO EXISTING SPAN
+
 axios
   .get('https://lambda-times-backend.herokuapp.com/topics')
   .then(response => {
     console.log(response);
       // const newCard = createCard(response.data);
       // cards.appendChild(newCard);
+      const newTab = Tabs(response.data);
+      tabMain.appendChild(newTab);
     })
   .catch(error => {
     console.log("The data was not returned", error);
   });
 
   // grab tabs div from existing HTML
-  const tabMain = document.querySelector('.tab');
+  const tabMain = document.querySelector('.tabs');
 
-  function Tabs() {
+  function Tabs(obj) {
     // create elements
     const tabsDiv = document.createElement('div');
     const topicsDiv = document.createElement('div');
@@ -47,7 +51,9 @@ axios
     titleSpan.classList.add('title');
 
     // set text
-    titleSpan.textContent = 'TRENDING TOPICS: ' + obj.data.topics; 
+    titleSpan.textContent = `TRENDING TOPICS: ${obj.data.topics}`; 
 
     return tabsDiv
   }
+
+  Tabs();
