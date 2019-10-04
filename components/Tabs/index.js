@@ -18,18 +18,18 @@
 
 // REVISE TO JUST APPEND TAB TO EXISTING SPAN
 
-axios
-  .get('https://lambda-times-backend.herokuapp.com/topics')
-  .then(response => {
-    console.log(response);
-      // const newCard = createCard(response.data);
-      // cards.appendChild(newCard);
-      const newTab = Tabs(response.data);
-      tabMain.appendChild(newTab);
-    })
-  .catch(error => {
-    console.log("The data was not returned", error);
-  });
+// axios
+//   .get('https://lambda-times-backend.herokuapp.com/topics')
+//   .then(response => {
+//     console.log(response);
+//       // const newCard = createCard(response.data);
+//       // cards.appendChild(newCard);
+//       const newTab = Tabs(response.data);
+//       tabMain.appendChild(newTab);
+//     })
+//   .catch(error => {
+//     console.log("The data was not returned", error);
+//   });
 
   // grab tabs div from existing HTML
   const tabMain = document.querySelector('.tabs');
@@ -56,4 +56,4 @@ axios
     return tabsDiv
   }
 
-  Tabs();
+  // Tabs();
