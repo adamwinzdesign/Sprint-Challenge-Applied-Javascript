@@ -16,44 +16,33 @@
 //   </div>
 // </div>
 
-// REVISE TO JUST APPEND TAB TO EXISTING SPAN
-
-// axios
-//   .get('https://lambda-times-backend.herokuapp.com/topics')
-//   .then(response => {
-//     console.log(response);
-//       // const newCard = createCard(response.data);
-//       // cards.appendChild(newCard);
-//       const newTab = Tabs(response.data);
-//       tabMain.appendChild(newTab);
-//     })
-//   .catch(error => {
-//     console.log("The data was not returned", error);
-//   });
-
-  // grab tabs div from existing HTML
-  const tabMain = document.querySelector('.tabs');
+axios
+  .get('https://lambda-times-backend.herokuapp.com/topics')
+  .then(response => {
+    console.log(response.data);
+    response.data.topics.forEach(function(e){
+      Tabs(e);
+    })
+  })
+  .catch(error => {
+    console.log("The data was not returned", error);
+  });
+ 
+  // grab topics from existing HTML
+  const topicsDiv = document.querySelector('.topics');
 
   function Tabs(obj) {
     // create elements
-    const tabsDiv = document.createElement('div');
-    const topicsDiv = document.createElement('div');
-    const titleSpan = document.createElement('span');
+    const tabDiv = document.createElement('div');
 
     // append elements
-    tabMain.appendChild(tabsDiv);
-    tabsDiv.appendChild(topicsDiv);
-    topicsDiv.appendChild(titleSpan);
+    topicsDiv.appendChild(tabDiv);
 
     // set classes
-    tabsDiv.classList.add('tabs');
-    topicsDiv.classList.add('topics');
-    titleSpan.classList.add('title');
+    tabDiv.classList.add('tab');
 
     // set text
-    titleSpan.textContent = `TRENDING TOPICS: ${obj.data.topics}`; 
+    tabDiv.textContent = `${obj}`; 
 
-    return tabsDiv
-  }
-
-  // Tabs();
+    return tabDiv
+  };
